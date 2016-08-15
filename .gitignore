@@ -1,0 +1,5 @@
+node_modules
+.python-version
+__pycache__
+*.sublime-*
+db.sqlite3
