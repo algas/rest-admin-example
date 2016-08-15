@@ -1,2 +1,5 @@
 django
 djangorestframework
+markdown
+django-filter
+git+https://github.com/rpkilby/django-cors-middleware.git@django-110
