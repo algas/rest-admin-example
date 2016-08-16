@@ -1,13 +1,13 @@
 var restAdmin = angular.module('restAdmin', ['ng-admin']);
 restAdmin.config(['NgAdminConfigurationProvider', function (nga) {
-    // create an admin application
     var admin = nga.application('Rest Admin')
-      .baseApiUrl('http://127.0.0.1:8000/'); // main API endpoint
+      .baseApiUrl('http://127.0.0.1:8000/');
 
     var group = nga.entity('groups').identifier(nga.field('url')).url(function(entityName, viewType, identifierValue, identifierName) {
-        return 'groups/'; // Can be absolute or relative
+        return 'groups/';
     });
     var groupFields = [
+        nga.field('url'),
         nga.field('name')
     ]
     group.listView().fields(groupFields);
@@ -15,17 +15,18 @@ restAdmin.config(['NgAdminConfigurationProvider', function (nga) {
     admin.addEntity(group);
 
     var user = nga.entity('users').identifier(nga.field('url')).url(function(entityName, viewType, identifierValue, identifierName) {
-        return 'users/'; // Can be absolute or relative
+        return 'users/';
     });
     var userFields = [
+        nga.field('url'),
         nga.field('username'),
         nga.field('email'),
+        nga.field('groups', 'json'),
     ]
     user.listView().fields(userFields);
     user.creationView().fields(userFields);
     admin.addEntity(user);
 
-    // attach the admin application to the DOM and execute it
     nga.configure(admin);
 }]);
 
